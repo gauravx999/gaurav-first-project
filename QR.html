@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+	<meta charset="UTF-8" />
+	<meta name="viewport"
+		content="width=device-width, 
+						initial-scale=1.0" />
+	<title>QR Code Generator</title>
+	<style>
+		
+			body {background-color: coral;}
+         
+		h1, h3 {
+		color: rgba(71, 4, 172, 0.225));
+		}
+		body, header {
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+		}
+	</style>
+
+	<script src=
+"https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js">
+	</script>
+</head>
+
+<body>
+
+	<marquee direction ="left" bgcolor="white"><font colour ="red" size ="15"> 𝙮𝙤𝙪  𝙘𝙖𝙣  𝙜𝙚𝙣e𝙧𝙖𝙩𝙚  𝙖𝙣𝙮  𝙌𝙍  𝙘𝙤𝙙𝙚</font></marquee>
+
+
+	<header>
+
+		<h1 style="background-color:rgba(232, 209, 209, 0.971);">QR code scanner </h1>
+	
+			
+		<h1 style="border:3px solid black;"> Scan It </h1>
+
+           <style="background-colour:green"></style>
+		   
+  
+
+		<h3>Enter QR code content and generate QR</h3>
+	</header>
+	<main>
+		<form action="/"
+			id="qr-generation-form">
+			<input type="text"
+				name="qr-code-content"
+				id="qr-content"
+				value=""
+				placeholder="Enter QR content"
+				autocomplete="off" />
+				<style> 
+					input[type=button], input[type=submit], input[type=reset] {
+					  background-color: #04AA6D;
+					  border: none;
+					  color: white;
+					  padding: 6px 25px;
+					  text-decoration: none;
+					  margin: 7px 2px;
+					  cursor: pointer;
+					}
+					</style>
+
+			
+					
+				
+					
+			<input type="submit"
+				value="Generate QR Code" />
+		</form><br />
+		<div id="qr-code"></div>
+	
+
+	</main>
+</body>
+<script>
+	let qrContentInput = document.getElementById("qr-content");
+	let qrGenerationForm = 
+	document.getElementById("qr-generation-form");
+	let qrCode;
+	
+	function generateQrCode(qrContent) {
+	return new QRCode("qr-code", {
+		text: qrContent,
+		width: 256,
+		height: 256,
+		colorDark: "#000000CB",
+		colorLight: "#ffffff",
+		correctLevel: QRCode.CorrectLevel.H,
+	});
+	}
+	
+	// Event listener for form submit event
+	qrGenerationForm.addEventListener("submit", function (event) {
+	// Prevent form submission
+	event.preventDefault();
+	let qrContent = qrContentInput.value;
+	if (qrCode == null) {
+		
+		// Generate code initially
+		qrCode = generateQrCode(qrContent);
+	} else {
+		
+		// If code already generated then make 
+		// again using same object
+		qrCode.makeCode(qrContent);
+	}
+	});
+</script>
+
+</html>
+
